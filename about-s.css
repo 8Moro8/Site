@@ -1,0 +1,74 @@
+/* Общие стили для страницы "О нас" */
+body {
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+  height: 100vh; /* Высота 100% от высоты экрана */
+  margin: 0; /* Убираем отступы у body */
+  background-color: #1a1a1a; /* Темный фон для лучшего контраста */
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Вертикальное расположение контейнеров */
+  justify-content: center; /* Центрирование по вертикали */
+  align-items: center; /* Центрирование по горизонтали */
+  width: 100%; /* Ширина 100% */
+}
+
+/* Контейнер для секции "О нас" */
+#about-section {
+  display: block; /* Чтобы он отображался */
+  text-align: center;
+  margin: 20px; /* Отступы для контейнера */
+  background-color: #2c3e50; /* Цвет фона контейнера */
+  padding: 40px; /* Отступы внутри контейнера */
+  border-radius: 20px; /* Скругление углов */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Тень для контейнера */
+  width: 90%; /* Ширина контейнера с адаптацией */
+  max-width: 800px; /* Максимальная ширина */
+}
+
+/* Заголовки */
+h1, h2 {
+  color: #ffd900; /* Цвет заголовков */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Тень для заголовков */
+}
+
+/* Кнопка меню */
+.menu-btn {
+  position: fixed; /* Используем фиксированное позиционирование */
+  left: 20px; /* Отступ слева */
+  top: 20px; /* Отступ сверху */
+  font-size: 18px; /* Размер шрифта */
+  background: #0066cc; /* Цвет фона кнопки меню */
+  border: none; /* Без рамки */
+  color: white; /* Цвет текста кнопки меню */
+  padding: 10px 15px; /* Отступы */
+  cursor: pointer; /* Указатель на кнопке */
+  border-radius: 5px; /* Скругление углов */
+  transition: background-color 0.3s; /* Плавный переход */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Тень для кнопки */
+  width: 80px; /* Ширина кнопки */
+}
+
+.menu-btn:hover {
+  background: #005bb5; /* Цвет при наведении */
+}
+
+/* Общие стили для основного контента */
+.content {
+  width: 100%; /* Ширина контента */
+  background-color: #0059ff; /* Цвет фона контента */
+  border-radius: 8px; /* Скругление углов */
+  padding: 20px; /* Отступы */
+}
+
+/* Подвал */
+footer {
+  text-align: center; /* Центрирование текста в подвале */
+  background-color: #000000; /* Цвет фона подвала */
+  color: white; /* Цвет текста подвала */
+  padding: 10px; /* Отступы */
+  margin-top: auto; /* Отталкивает подвал к низу */
+}

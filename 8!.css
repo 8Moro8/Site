@@ -1,0 +1,209 @@
+/* Общие стили */
+body {
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+  height: 100vh; /* Высота 100% от высоты экрана */
+  margin: 0; /* Убираем отступы у body */
+  background-color: #1a1a1a; /* Темный фон для лучшего контраста */
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Вертикальное расположение контейнеров */
+  justify-content: center; /* Центрирование по вертикали */
+  align-items: center; /* Центрирование по горизонтали */
+  width: 100%; /* Ширина 100% */
+}
+
+/* Контейнеры для авторизации и регистрации */
+.login-container,
+.register-container,
+.main-container {
+  display: block; /* Чтобы они отображались */
+  text-align: center;
+  margin: 20px; /* Отступы для контейнеров */
+  background-color: #2c3e50; /* Цвет фона контейнера */
+  padding: 40px; /* Отступы внутри контейнера */
+  border-radius: 20px; /* Скругление углов */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Тень для контейнера */
+  width: 90%; /* Ширина контейнера с адаптацией */
+  max-width: 400px; /* Максимальная ширина */
+}
+
+/* Заголовки */
+h1, h2 {
+  color: #ffd900; /* Цвет заголовков */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Тень для заголовков */
+}
+
+/* Кнопка меню */
+.menu-btn {
+  position: fixed; /* Используем фиксированное позиционирование */
+  left: 20px; /* Отступ слева */
+  top: 20px; /* Отступ сверху, можете изменить на нужное значение */
+  font-size: 18px; /* Размер шрифта */
+  background: #0066cc; /* Цвет фона кнопки меню */
+  border: none; /* Без рамки */
+  color: white; /* Цвет текста кнопки меню */
+  padding: 10px 15px; /* Отступы */
+  cursor: pointer; /* Указатель на кнопке */
+  border-radius: 5px; /* Скругление углов */
+  transition: background-color 0.3s; /* Плавный переход */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Тень для кнопки */
+  width: 80px
+}
+
+.menu-btn:hover {
+  background: #005bb5; /* Цвет при наведении */
+}
+
+/* Поля ввода */
+input {
+  padding: 12px;
+  margin: 10px 0; /* Отступы сверху и снизу */
+  width: 100%;
+  border: 1px solid #003d7a; /* Цвет рамки */
+  border-radius: 5px; /* Скругление углов поля */
+  background-color: #ecf0f1; /* Цвет фона поля */
+  transition: border-color 0.3s; /* Плавный переход при фокусе */
+}
+
+input:focus {
+  border-color: #ffd900; /* Цвет рамки при фокусе */
+}
+
+/* Кнопки */
+button {
+  padding: 12px 20px;
+  background-color: #e74c3c; /* Цвет фона кнопки */
+  color: white; /* Цвет текста кнопки */
+  border: none; /* Без рамки */
+  border-radius: 5px; /* Скругление углов кнопки */
+  cursor: pointer; /* Указатель на кнопке */
+  margin: 10px 0; /* Отступы сверху и снизу */
+  width: 100%; /* Ширина кнопки */
+  transition: background-color 0.3s; /* Плавный переход */
+}
+
+/* Эффект при наведении на кнопку */
+button:hover {
+  background-color: #c0392b; /* Темнее при наведении */
+}
+
+/* Показываем контейнер авторизации по умолчанию */
+#login-container {
+  display: block; /* Показать контейнер авторизации */
+}
+
+/* Общие стили для основного контента */
+.header {
+  background-color: #004080; /* Цвет фона заголовка */
+  color: white; /* Цвет текста заголовка */
+  padding: 20px; /* Отступы */
+  text-align: center; /* Центрирование текста */
+  position: relative; /* Относительное позиционирование */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Тень для заголовка */
+  height: 50px; /* Высота заголовка */
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Позиционирование меню */
+  width: 250px; /* Ширина меню */
+  height: 100%; /* Высота меню */
+  background-color: #004080; /* Цвет фона меню */
+  color: white; /* Цвет текста меню */
+  overflow-y: auto; /* Прокрутка при переполнении */
+  transition: left 0.3s ease; /* Плавный переход при показе */
+  padding-top: 60px; /* Отступ сверху */
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px; /* Положение кнопки закрытия */
+  right: 10px; /* Положение кнопки закрытия */
+  font-size: 18px; /* Размер шрифта кнопки закрытия */
+  background: #cc0000; /* Цвет фона кнопки закрытия */
+  padding: 5px 10px; /* Отступы */
+  color: white; /* Цвет текста кнопки закрытия */
+  cursor: pointer; /* Указатель на кнопке */
+  border-radius: 5px; /* Скругление углов кнопки закрытия */
+}
+
+.menu ul {
+  list-style-type: none; /* Убрать маркеры у списка */
+  padding: 0; /* Убрать отступы */
+}
+
+.menu ul li {
+  padding: 10px; /* Отступы для пунктов меню */
+  text-align: center; /* Центрирование текста */
+}
+
+.menu ul li a {
+  color: white; /* Цвет ссылок */
+  text-decoration: none; /* Убрать подчеркивание */
+  font-size: 18px; /* Размер шрифта ссылок */
+  display: block; /* Отображение в блочном формате */
+  transition: background-color 0.3s; /* Плавный переход */
+}
+
+.menu ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Цвет фона при наведении */
+}
+
+/* Основная структура */
+.layout {
+  width: 50%; /* Ширина таблицы */
+  height: 84vh; /* Высота таблицы */
+  border-collapse: separate; /* Разделение ячеек */
+  border-spacing: 10px; /* Расстояние между ячейками */
+  margin: 20px auto; /* Отступы сверху и снизу, автоматические отступы по бокам для центрирования */
+  position: relative; /* Измените на relative для правильного позиционирования */
+}
+
+
+td {
+  border: 1px solid #be5600; /* Цвет рамки ячеек */
+  padding: 20px; /* Отступы внутри ячеек */
+  background-color: #f8f400; /* Цвет фона ячеек */
+  border-radius: 8px; /* Скругление углов ячеек */
+  transition: background-color 0.3s; /* Плавный переход */
+}
+
+td:hover {
+  background-color: #ff9900; /* Цвет фона при наведении на ячейку */
+}
+
+.content {
+  width: 50%; /* Ширина контента */
+  background-color: #0059ff; /* Цвет фона контента */
+  border-radius: 8px; /* Скругление углов */
+}
+
+.news {
+  width: 30%; /* Ширина новостей */
+  background-color: #0059ff; /* Цвет фона новостей */
+  border-radius: 8px; /* Скругление углов */
+}
+
+.banners {
+  text-align: center; /* Центрирование текста */
+  background-color: #0059ff; /* Цвет фона баннеров */
+  padding: 20px; /* Отступы */
+  border-radius: 8px; /* Скругление углов */
+}
+
+.footer {
+  text-align: center; /* Центрирование текста в подвале */
+  background-color: #000000; /* Цвет фона подвала */
+  color: white; /* Цвет текста подвала */
+  padding: 10px; /* Отступы */
+}
+
+p {
+  font-size: 18px; /* Размер шрифта параграфов */
+  color: #000000; /* Цвет текста параграфов */
+}
