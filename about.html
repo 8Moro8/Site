@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Страж - О нас</title>
-    <link rel="stylesheet" href="8!.css">
+    <link rel="stylesheet" href="about-s.css">
 </head>
 <body>
     <div id="about-container">
         <div class="header">
             <h1>Охранное агентство "Страж"</h1>
             <button class="menu-btn" id="menu-toggle">Меню</button>
+            <button id="logout-btn">Выйти</button> <!-- Кнопка выхода -->
         </div>
-        
+
         <div class="menu">
             <button class="close-btn" onclick="document.getElementById('menu-toggle-checkbox').checked = false;">Закрыть</button>
             <ul>
@@ -22,6 +23,12 @@
                 <li><a href="history.html">История Защиты</a></li>
                 <li><a href="contacts.html" id="contact-link">Контакты</a></li>
             </ul>
+        </div>
+
+        <div class="marquee-container">
+            <div class="marquee">
+                Добро пожаловать на сайт охранного агентства "Страж"! Надежная защита для вашего бизнеса и дома.
+            </div>
         </div>
 
         <table class="layout">
@@ -41,6 +48,7 @@
         </table>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="!8.java"></script>
 </body>
 </html>

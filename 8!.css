@@ -20,16 +20,15 @@ body {
 .login-container,
 .register-container,
 .main-container {
-  display: block; /* Чтобы они отображались */
-  text-align: center;
-  margin: 20px; /* Отступы для контейнеров */
-  background-color: #2c3e50; /* Цвет фона контейнера */
-  padding: 40px; /* Отступы внутри контейнера */
-  border-radius: 20px; /* Скругление углов */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Тень для контейнера */
-  width: 90%; /* Ширина контейнера с адаптацией */
-  max-width: 400px; /* Максимальная ширина */
+    overflow: hidden;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    width: calc(100% - 250px); /* Учитываем ширину меню */
+    text-align: center;
+    margin-left: 250px; /* Отступ слева, чтобы строка не заходила на меню */
 }
+
 
 /* Заголовки */
 h1, h2 {
@@ -116,27 +115,26 @@ button:hover {
 
 /* Общие стили для основного контента */
 .header {
-  background-color: #004080; /* Цвет фона заголовка */
-  color: white; /* Цвет текста заголовка */
-  padding: 20px; /* Отступы */
-  text-align: center; /* Центрирование текста */
-  position: static; /* Относительное позиционирование */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Тень для заголовка */
-  height: 50px; /* Высота заголовка */
+  background: linear-gradient(90deg, #004080, #003366);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
+
 
 .menu {
   position: fixed;
-  top: 10px;
-  left: -250px; /* Позиционирование меню */
-  width: 250px; /* Ширина меню */
-  height: 120%; /* Высота меню */
-  background-color: #004080; /* Цвет фона меню */
-  color: white; /* Цвет текста меню */
-  overflow-y: auto; /* Прокрутка при переполнении */
-  transition: left 0.3s ease; /* Плавный переход при показе */
-  padding-top: 50px; /* Отступ сверху */
-
+  top: 0;
+  left: -250px; /* Позиция меню */
+  width: 250px;
+  height: 100%;
+  background-color: #004080;
+  color: white;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  padding-top: 10px;
+  z-index: 10; /* Устанавливаем высокий z-index */
 }
 
 .close-btn {
@@ -227,22 +225,39 @@ p {
   color: #000000; /* Цвет текста параграфов */
 }
 
+/* Контейнер бегущей строки */
 .marquee-container {
   overflow: hidden;
   background-color: #333;
   color: white;
-  padding: 10px 0;
+  padding: 20px 30px;
+  width: 100%; /* Ширина контейнера на всю страницу */
+  position: relative;
+  text-align: center;
+  display: flex;
+  justify-content: center; /* Центрируем по горизонтали */
+  align-items: center; /* Центрируем по вертикали */
+  height: 10px; /* Высота контейнера */
 }
 
+/* Текст бегущей строки */
 .marquee {
   display: inline-block;
   white-space: nowrap;
-  animation: marquee 15s linear infinite;
+  animation: slideMarquee 15s linear infinite;
   font-size: 18px;
   font-weight: bold;
+  position: absolute;
+  left: 15%; /* Начальная позиция строки за правым краем */
 }
 
-@keyframes marquee {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+/* Анимация бегущей строки */
+@keyframes slideMarquee {
+  0% {
+      transform: translateX(200%); /* Начало строки за правым краем */
+  }
+  100% {
+      transform: translateX(-200%); /* Конец строки за левым краем */
+  }
 }
+
