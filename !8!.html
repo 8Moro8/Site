@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страж - Охранное агентство</title>
+    <link rel="stylesheet" href="8!.css"> <!-- Убедитесь, что имя файла корректно -->
+</head>
+<body>
+    <!-- Окно авторизации -->
+    <div class="login-container" id="login-container">
+        <h1>Охранное агентство "Страж"</h1>
+        <h2>Авторизация</h2>
+        <form id="login-form">
+            <input type="text" id="login-identifier" placeholder="Почта или Никнейм" required><br>
+            <input type="password" id="password" placeholder="Пароль" required><br>
+            <button type="submit">Войти</button>
+        </form>
+        <button id="register-btn">Регистрация</button>
+    </div>
+
+    <!-- Окно регистрации -->
+    <div class="register-container" id="register-container" style="display: none;">
+        <h1>Охранное агентство "Страж"</h1>
+        <h2>Регистрация</h2>
+        <form id="register-form">
+            <input type="text" id="reg-username" placeholder="Никнейм" required><br>
+            <input type="email" id="reg-email" placeholder="Почта" required><br>
+            <input type="text" id="reg-country" placeholder="Страна" required><br>
+            <input type="tel" id="reg-phone" placeholder="Номер телефона" required><br>
+            <input type="password" id="reg-password" placeholder="Пароль" required><br>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <button id="back-to-login">Назад к авторизации</button>
+    </div>
+
+    <!-- Главная страница -->
+    <div id="main-container" style="display: none;">
+        <div class="header">
+            <h1>Страж</h1>
+            <button class="menu-btn" id="menu-toggle">Меню</button>
+            <button id="logout-btn">Выйти</button> <!-- Кнопка выхода -->
+        </div>
+        
+        <div class="menu">
+            <button class="close-btn" onclick="document.getElementById('menu-toggle-checkbox').checked = false;">Закрыть</button>
+            <ul>
+                <li><a href="about.html" id="about-link">О нас</a></li>
+                <li><a href="packages.html">Пакеты Защиты</a></li>
+                <li><a href="employees.html">Сотрудники компании</a></li>
+                <li><a href="history.html">История Защиты</a></li>
+                <li><a href="contacts.html" id="contact-link">Контакты</a></li>
+            </ul>
+        </div>
+
+        <table class="layout">
+            <tr>
+                <td class="content">
+                    <h2>Охрана и безопасность — наша работа</h2>
+                    <p>Добро пожаловать на официальный сайт охранного агентства "Страж". Мы предлагаем полный спектр охранных услуг, включая физическую охрану, мониторинг объектов и обеспечение безопасности на мероприятиях.</p>
+                    <p>Наша миссия — защита вашего имущества и спокойствие вашей семьи.</p>
+                    <p>Вы можете ознакомиться с нашими услугами, командой профессионалов и условиями сотрудничества.</p>
+                </td>
+                <td class="news">
+                    <h2>Новости</h2>
+                    <p>Октябрь 2024 — Обновление системы видеонаблюдения на всех объектах клиентов.</p>
+                    <p>Сентябрь 2024 — Открытие нового офиса агентства "Страж" в городе Нур-Султан.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="banners">
+                    <h2>Наши партнёры</h2>
+                    <p>Мы сотрудничаем с ведущими компаниями в области безопасности и инновационных технологий.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="footer">© 2024 Охранное агентство "Страж"</td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="!8.java"></script> <!-- Убедитесь, что имя файла корректно -->
+</body>
+</html>

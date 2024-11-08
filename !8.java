@@ -11,16 +11,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const registerBtn = document.getElementById('register-btn');
     const backToLoginBtn = document.getElementById('back-to-login');
 
-    // Получаем элементы кнопок и меню
     const menuBtn = document.querySelector('.menu-btn');
     const menu = document.querySelector('.menu');
     const closeBtn = document.querySelector('.close-btn');
 
-    // Получаем элементы для навигации
     const aboutLink = document.getElementById('about-link');
     const contactLink = document.getElementById('contact-link');
 
-    // Массив для хранения пользователей
     let users = [];
 
     // Загрузка пользователей из localStorage при инициализации
@@ -29,13 +26,12 @@ document.addEventListener("DOMContentLoaded", function() {
         if (storedUsers) {
             users = JSON.parse(storedUsers);
         } else {
-            // Пример добавления тестового пользователя, если нет данных
             users.push({
                 username: "testUser",
                 email: "test@example.com",
                 country: "Казахстан",
                 phone: "+7 (777) 123-45-67",
-                password: "password123" // Здесь лучше хэшировать пароль
+                password: CryptoJS.SHA256("password123").toString() // Захэшированный пароль
             });
             saveUsers(); // Сохранение тестового пользователя
         }
@@ -44,6 +40,16 @@ document.addEventListener("DOMContentLoaded", function() {
     // Сохранение пользователей в localStorage
     function saveUsers() {
         localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    // Проверка состояния входа пользователя
+    function checkLoginStatus() {
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (loggedInUser) {
+            showMain(); // Показать главную страницу, если пользователь авторизован
+        } else {
+            showLogin(); // Показать страницу входа, если пользователь не авторизован
+        }
     }
 
     // Функция для отображения окна авторизации
@@ -67,7 +73,6 @@ document.addEventListener("DOMContentLoaded", function() {
         mainContainer.style.display = 'block';
     }
 
-    // Обработчики событий для кнопок меню
     if (homeLink) {
         homeLink.addEventListener('click', (event) => {
             event.preventDefault();
@@ -89,17 +94,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Обработчик события для кнопки меню
     menuBtn.addEventListener('click', () => {
         menu.style.left = '0'; // Показать меню
     });
 
-    // Обработчик события для кнопки закрытия
     closeBtn.addEventListener('click', () => {
         menu.style.left = '-250px'; // Скрыть меню
     });
 
-    // Слушатели событий для регистрации и возврата к авторизации
     registerBtn.addEventListener('click', showRegister);
     backToLoginBtn.addEventListener('click', showLogin);
 
@@ -107,46 +109,39 @@ document.addEventListener("DOMContentLoaded", function() {
     registerForm.addEventListener("submit", async function(event) {
         event.preventDefault();
 
-        // Валидация
         const username = document.getElementById("reg-username").value.trim();
         const email = document.getElementById("reg-email").value.trim();
         const country = document.getElementById("reg-country").value.trim();
         const phone = document.getElementById("reg-phone").value.trim();
         const password = document.getElementById("reg-password").value;
 
-        // Проверка на заполнение всех полей
         if (username === "" || email === "" || country === "" || phone === "" || password === "") {
             alert("Все поля должны быть заполнены!");
             return;
         }
 
-        // Проверка формата email
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
             alert("Введите корректный адрес электронной почты!");
             return;
         }
 
-        // Проверка на уникальность имени пользователя или email
         const userExists = users.some(user => user.username === username || user.email === email);
         if (userExists) {
             alert("Пользователь с таким именем или email уже существует!");
             return;
         }
 
-        // Хэширование пароля
-        const hashedPassword = await hashPassword(password);
+        const hashedPassword = hashPassword(password);
 
-        // Сохранение нового пользователя
         users.push({
             username: username,
             email: email,
             country: country,
             phone: phone,
-            password: hashedPassword // Храните только хэш пароля
+            password: hashedPassword
         });
 
-        // Сохранение пользователей в localStorage
         saveUsers();
 
         registerContainer.style.display = "none";
@@ -160,26 +155,31 @@ document.addEventListener("DOMContentLoaded", function() {
         const loginIdentifier = document.getElementById("login-identifier").value.trim();
         const password = document.getElementById("password").value;
 
-        // Проверка пользователя по никнейму или почте
+        const hashedPassword = hashPassword(password);
+
         const user = users.find(user =>
-            (user.username === loginIdentifier || user.email === loginIdentifier) && user.password === password
+            (user.username === loginIdentifier || user.email === loginIdentifier) && user.password === hashedPassword
         );
 
         if (user) {
-            loginContainer.style.display = "none";
-            mainContainer.style.display = "block";
+            localStorage.setItem('loggedInUser', JSON.stringify(user)); // Сохранение пользователя в localStorage
+            showMain(); // Показать главную страницу
         } else {
             alert("Неверные данные для входа!");
         }
     });
 
-    // Инициализация страницы
+    // Обработка выхода из аккаунта
+    document.getElementById("logout-btn").addEventListener("click", function() {
+        localStorage.removeItem('loggedInUser'); // Удаление пользователя из localStorage
+        showLogin(); // Показать страницу входа
+    });
+
     loadUsers(); // Загрузить пользователей при загрузке
-    showLogin(); // Показать окно авторизации при загрузке
+    checkLoginStatus(); // Проверить состояние входа при загрузке
 });
 
-// Пример кода для хэширования паролей (потребуется серверная часть для работы с библиотекой bcrypt)
-async function hashPassword(password) {
-    const hashedPassword = await bcrypt.hash(password, 10); // 10 - количество раундов хэширования
-    return hashedPassword;
+// Функция для хэширования пароля
+function hashPassword(password) {
+    return CryptoJS.SHA256(password).toString();
 }
