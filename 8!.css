@@ -81,7 +81,7 @@ button {
   border: none; /* Без рамки */
   border-radius: 5px; /* Скругление углов кнопки */
   cursor: pointer; /* Указатель на кнопке */
-  margin: 10px 0; /* Отступы сверху и снизу */
+  margin: 0px 10px; /* Отступы сверху и снизу */
   width: 100%; /* Ширина кнопки */
   transition: background-color 0.3s; /* Плавный переход */
 }
@@ -120,22 +120,23 @@ button:hover {
   color: white; /* Цвет текста заголовка */
   padding: 20px; /* Отступы */
   text-align: center; /* Центрирование текста */
-  position: relative; /* Относительное позиционирование */
+  position: static; /* Относительное позиционирование */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Тень для заголовка */
-  height: 10px; /* Высота заголовка */
+  height: 50px; /* Высота заголовка */
 }
 
 .menu {
   position: fixed;
-  top: 0;
+  top: 10px;
   left: -250px; /* Позиционирование меню */
   width: 250px; /* Ширина меню */
-  height: 100%; /* Высота меню */
+  height: 120%; /* Высота меню */
   background-color: #004080; /* Цвет фона меню */
   color: white; /* Цвет текста меню */
   overflow-y: auto; /* Прокрутка при переполнении */
   transition: left 0.3s ease; /* Плавный переход при показе */
-  padding-top: 10px; /* Отступ сверху */
+  padding-top: 50px; /* Отступ сверху */
+
 }
 
 .close-btn {
@@ -224,4 +225,24 @@ td:hover {
 p {
   font-size: 18px; /* Размер шрифта параграфов */
   color: #000000; /* Цвет текста параграфов */
+}
+
+.marquee-container {
+  overflow: hidden;
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 15s linear infinite;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
