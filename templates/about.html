@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страж - О нас</title>
+    <link rel="stylesheet" href="/static/about-s.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    
+    <div id="main-container" style="display:none;">
+        <div class="header">
+            <h1>Охранное агентство "Страж"</h1>
+            <button class="menu-toggle" id="menu-toggle">Меню</button>
+            <button id="logout-btn">Выйти</button> <!-- Кнопка выхода -->
+        </div>
+
+
+        <div class="menu">
+            <button class="close-btn" onclick="document.getElementById('menu-toggle-checkbox').checked = false;">Закрыть</button>
+            <ul>
+                <li><a href="index.html" >Главная</a></li>
+                <li><a href="packages.html">Пакеты Защиты</a></li>
+                <li><a href="employees.html">Сотрудники компании</a></li>
+                <li><a href="history.html">История Защиты</a></li>
+            </ul>
+        </div>
+
+        <div class="marquee-container">
+            <div class="marquee">
+                Добро пожаловать на сайт охранного агентства "Страж"! Надежная защита для вашего бизнеса и дома.
+            </div>
+        </div>
+
+        <table class="layout">
+            <tr>
+                <td class="content">
+                    <h2>Наша Миссия</h2>
+                    <p>Наша команда профессионалов обеспечивает высококачественные охранные услуги для защиты ваших интересов.</p>
+                    <h2>Наши Услуги</h2>
+                    <p>Мы специализируемся на различных аспектах безопасности, включая физическую охрану, видеонаблюдение и защиту объектов.</p>
+                    <h2>Почему Мы?</h2>
+                    <p>С "Страж" вы можете быть уверены в безопасности своих объектов благодаря высококвалифицированным специалистам и современным технологиям.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="content">
+                    <h2>Телефон: +7 (777) 123-45-67</h2>
+                    <h2>Электронная почта: guard@gmail.com</h2>
+                    <h2>Адрес: г. Н, ул. Темная, д. 8</h2>
+            </tr>
+        </table>
+
+
+        <!-- Кнопка для открытия модального окна с сообщением -->
+        <button class="open-message-btn">Написать сообщение</button>
+
+        <!-- Модальное окно для ввода сообщения -->
+        <div class="modal-overlay message-overlay" style="display: none;"></div>
+<div class="message-modal" style="display: none;">
+    <h2>Ваше сообщение</h2>
+    <textarea class="message-input" placeholder="Введите сообщение..."></textarea>
+    <button class="close-message-btn">Закрыть</button>
+</div>
+
+
+        <div class="footer-container">
+            <div class="footer">
+            © 2024 Охранное агентство "Страж"
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
+

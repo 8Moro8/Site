@@ -1,0 +1,493 @@
+/* Общие стили */
+body {
+  display: flex;
+  justify-content: flex-start; /* Выравнивание по верхнему краю */
+  align-items: flex-start; /* Выравнивание по левому краю */
+  flex-direction: column; /* Вертикальное расположение */
+  margin: 0;
+  height: 100vh;
+  background-color: #20343d; /* Темный фон для лучшего контраста */
+  font-family: 'Times New Roman', Times, serif;
+  overflow: hidden;
+
+  background-image: url('/static/forest.png'); /* Укажите путь к вашему изображению */
+  background-size: cover; /* Покрывает весь экран */
+  background-position: center; /* Центрирует изображение */
+  background-repeat: no-repeat; /* Не повторяется */
+}
+
+/* Шапка */
+.header {
+  width: 100%;
+  background: linear-gradient(90deg, #004080, #003366);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 80px;
+}
+
+.logout-btn {
+  right: 20px;
+  top: 20px;
+  background-color: #e74c3c;
+  width: 80px;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
+
+#main-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 100px;
+}
+
+
+h1, h2 {
+  color: #ffd900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.menu-toggle, button {
+  position: fixed;
+  font-size: 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.menu-toggle {
+  left: 20px;
+  top: 20px;
+  background: #0066cc;
+}
+
+.menu-toggle:hover {
+  background: #005bb5;
+}
+
+button {
+  right: 20px;
+  top: 20px;
+  background-color: #e74c3c;
+  width: 80px;
+}
+
+button:hover {
+  background-color: #c0392b;
+}
+
+/* Меню */
+.menu {
+  position: fixed;
+  top: -400px;
+  left: 0;
+  width: 10%;
+  height: 300px;
+  background-color: #004080;
+  color: white;
+  overflow-y: auto;
+  transition: top 0.3s ease;
+  padding-top: 50px;
+  z-index: 10;
+  border: 2px solid #000;
+  border-radius: 10px;
+}
+
+.menu.active {
+  top: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #cc0000;
+  padding: 5px 10px;
+  width: 100%;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu ul li {
+  padding: 10px;
+  text-align: center;
+}
+
+.menu ul li a {
+  color: white;
+  font-size: 20px;
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.menu ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Контейнер для товаров */
+#products-container {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет переносить элементы на новую строку при нехватке места */
+  justify-content: space-between; /* Равномерное распределение товаров по горизонтали */
+  gap: 20px; /* Расстояние между товарами */
+  margin: 20px 0;
+  padding: 10px;
+}
+
+/* Карточка товара */
+.product-item {
+  flex: 1 1 200px; /* Минимальная ширина 200px, элементы будут гибкими */
+  max-width: 45%; /* Ограничиваем максимальную ширину */
+  margin: 10px; /* Добавляем отступы между товарами */
+  background: linear-gradient(135deg, #0059ff, #003f91);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease, background 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+  max-width: 200px; /* Ограничение по ширине изображения */
+  margin-bottom: 10px;
+}
+
+.product-item h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #000000;
+}
+
+.product-item p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #000000;
+}
+
+.product-item .product-price {
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+/* Кнопка добавить товар */
+.add-item-btn {
+  position: fixed;
+  right: 20px;
+  top: 150px;
+  background-color: #27ae60;
+  width: 120px;
+  z-index: 101;
+}
+
+.add-item-btn:hover {
+  background-color: #2ecc71;
+}
+
+/* Подвал */
+.footer {
+  text-align: center;
+  background-color: #000;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Помещаем подвал поверх остальных элементов */
+}
+
+/* Контейнер для бегущей строки */
+.marquee-container {
+  font-family: 'Times New Roman', Times, serif; /* Используем Times New Roman, если он доступен */
+  position: fixed;
+  top: 80px; /* Устанавливаем фиксированное положение на странице, чтобы не перекрывать шапку */
+  left: 0;
+  width: 100%; /* Ширина контейнера на всю страницу */
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center; /* Центрируем по горизонтали */
+  align-items: center; /* Центрируем по вертикали */
+  height: 10px; /* Высота контейнера */
+  z-index: 1000; /* Убедитесь, что бегущая строка будет поверх других элементов */
+}
+
+/* Текст бегущей строки */
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: slideMarquee 15s linear infinite;
+  font-size: 18px;
+  font-weight: bold;
+  position: absolute;
+  left: 15%; /* Начальная позиция строки за правым краем */
+}
+
+/* Анимация бегущей строки */
+@keyframes slideMarquee {
+  0% {
+      transform: translateX(200%); /* Начало строки за правым краем */
+  }
+  100% {
+      transform: translateX(-200%); /* Конец строки за левым краем */
+  }
+}
+
+/* Кнопка для открытия окна сообщения */
+.open-message-btn {
+  position: fixed;
+  right: 10px;
+  top: 780px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 7px 7px; /* Уменьшаем отступы для уменьшения кнопки */
+  border: none;
+  border-radius: 50%; /* Округлая форма */
+  cursor: pointer;
+  font-size: 12px; /* Уменьшаем размер шрифта */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  height: 75px;  /* Меньше размер кнопки */
+  width: 75px;   /* Меньше размер кнопки */
+  display: flex; /* Для центрирования текста */
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+}
+
+/* Адаптация под широкие экраны (мониторы больше 1440px) */
+@media (min-width: 1441px) {
+  .open-message-btn {
+    right: 10px; /* Увеличенный отступ от правого края */
+    top: 83%; /* Увеличенный отступ от нижнего края */
+    height: 90px; /* Крупнее кнопка */
+    width: 90px;
+    font-size: 16px; /* Увеличенный размер текста */
+  }
+}
+
+/* Адаптация под стандартные экраны (1024px–1440px) */
+@media (max-width: 1440px) and (min-width: 1024px) {
+  .open-message-btn {
+    right: 20px; /* Стандартный отступ */
+    top: 50px;
+    height: 80px; /* Обычный размер кнопки */
+    width: 80px;
+    font-size: 14px;
+  }
+}
+
+/* Адаптация под узкие экраны (меньше 1024px) */
+@media (max-width: 1023px) {
+  .open-message-btn {
+    right: 15px; /* Уменьшенный отступ */
+    top: 20px; /* Уменьшенный отступ */
+    height: 70px; /* Меньший размер кнопки */
+    width: 70px;
+    font-size: 12px; /* Уменьшенный размер текста */
+  }
+}
+
+.open-message-btn:hover {
+  background-color: #45a049;
+}
+
+/* Модальное окно */
+.message-modal {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #181818; /* Белый фон для контраста */
+  border-radius: 12px; /* Более округлые углы */
+  padding: 30px; /* Увеличенные отступы */
+  width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Более заметная тень */
+  z-index: 1000; /* Чтобы окно было поверх других элементов */
+  animation: fadeIn 0.3s ease-out; /* Плавное появление окна */
+}
+
+/* Стили для фона модального окна */
+.modal-overlay {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Темный фон для фона окна */
+  z-index: 999; /* Фон будет под модальным окном */
+}
+
+/* Кнопка закрытия модального окна */
+.close-message-btn {
+  background-color: #cc0000;
+  color: white;
+  padding: 10px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.close-message-btn:hover {
+  background-color: #e74c3c;
+}
+
+/* Поле ввода сообщения */
+.message-input {
+  width: 95%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* Общий фон для модального окна */
+.modal-overlay-add_product {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный черный фон */
+  z-index: 1000; /* Поверх других элементов */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out; /* Плавное появление */
+}
+
+/* Контейнер для контента модального окна */
+.modal-content {
+  background-color: #1f1f1f;
+  border-radius: 16px;
+  padding: 40px;
+  width: 420px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  z-index: 1001;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  animation: fadeIn 0.4s ease-out;
+  border: 1px solid #333;
+}
+
+/* Кнопка закрытия */
+.close-add_product-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.close-add_product-btn:hover {
+  color: #ff0000;
+}
+
+/* Заголовок */
+.modal-content h2 {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Местоположение лейблов */
+label {
+  color: #ffffff;
+  font-size: 16px;
+  margin: 10px 0 5px;
+}
+
+/* Стили для текстового ввода */
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+/* Группа радио-кнопок */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.checkbox-group label {
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.checkbox-group input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Кнопка отправки */
+.submit-btn {
+  width: 5%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

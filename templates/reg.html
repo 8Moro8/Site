@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Охранное агентство "Страж"</title>
+    <link rel="stylesheet" href="/static/reg.css"> <!-- Подключаем CSS файл -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Окно авторизации -->
+    <div class="login-container" id="login-container">
+        <h1>Охранное агентство "Страж"</h1>
+        <h2>Авторизация</h2>
+        <form id="login-form">
+            <input type="text" id="login-identifier" placeholder="Почта или логин" required><br>
+            <input type="password" id="password" placeholder="Пароль" required><br>
+            <button type="submit">Войти</button>
+        </form>
+        <button id="register-btn">Регистрация</button>
+    </div>
+
+    <!-- Окно регистрации -->
+    <div class="register-container" id="register-container" style="display: none;">
+        <h1>Охранное агентство "Страж"</h1>
+        <h2>Регистрация</h2>
+        <form id="register-form">
+            <input type="text" id="reg-username" placeholder="Логин" required><br>
+            <input type="email" id="reg-email" placeholder="Почта" required><br>
+            <input type="text" id="reg-country" placeholder="Страна" required><br>
+            <input type="tel" id="reg-phone" placeholder="Номер телефона" required><br>
+            <input type="password" id="reg-password" placeholder="Пароль" required><br>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <button id="back-to-login">Назад к авторизации</button>
+    </div>
+
+    <script src="/static/reg.js"></script> <!-- Подключаем JavaScript файл -->
+</body>
+</html>
