@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Страж - О нас</title>
-    <link rel="stylesheet" href="/static/about-s.css">
+    <title>Охранное агентство "Страж"</title>
+    <link rel="stylesheet" href="/static/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <link rel="icon" href="static/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    
-    <div id="main-container" style="display:none;">
+    <!-- Главная страница -->
+    <div id="main-container">
         <div class="header">
             <h1>Охранное агентство "Страж"</h1>
             <button class="menu-toggle" id="menu-toggle">Меню</button>
             <button id="logout-btn">Выйти</button> <!-- Кнопка выхода -->
         </div>
-
-
+        
         <div class="menu">
             <button class="close-btn" onclick="document.getElementById('menu-toggle-checkbox').checked = false;">Закрыть</button>
             <ul>
-                <li><a href="index.html" >Главная</a></li>
+                <li><a href="about.html" id="about-link">О нас</a></li>
                 <li><a href="packages.html">Пакеты Защиты</a></li>
             </ul>
         </div>
@@ -35,23 +34,24 @@
         <table class="layout">
             <tr>
                 <td class="content">
-                    <h2>Наша Миссия</h2>
-                    <p>Наша команда профессионалов обеспечивает высококачественные охранные услуги для защиты ваших интересов.</p>
-                    <h2>Наши Услуги</h2>
-                    <p>Мы специализируемся на различных аспектах безопасности, включая физическую охрану, видеонаблюдение и защиту объектов.</p>
-                    <h2>Почему Мы?</h2>
-                    <p>С "Страж" вы можете быть уверены в безопасности своих объектов благодаря высококвалифицированным специалистам и современным технологиям.</p>
+                    <h2>Охрана и безопасность — наша работа</h2>
+                    <p>Добро пожаловать на официальный сайт охранного агентства "Страж". Мы предлагаем полный спектр охранных услуг, включая физическую охрану, мониторинг объектов и обеспечение безопасности на мероприятиях.</p>
+                    <p>Наша миссия — защита вашего имущества и спокойствие вашей семьи.</p>
+                    <p>Вы можете ознакомиться с нашими услугами, командой профессионалов и условиями сотрудничества.</p>
+                </td>
+                <td class="news">
+                    <h2>Новости</h2>
+                    <p>Октябрь 2024 — Обновление системы видеонаблюдения на всех объектах клиентов.</p>
+                    <p>Сентябрь 2024 — Открытие нового офиса агентства "Страж" в городе Москва.</p>
                 </td>
             </tr>
-
             <tr>
-                <td class="content">
-                    <h2>Телефон: +7 (777) 123-45-67</h2>
-                    <h2>Электронная почта: guard@gmail.com</h2>
-                    <h2>Адрес: г. Н, ул. Темная, д. 8</h2>
+                <td colspan="2" class="banners">
+                    <h2>Наши партнёры</h2>
+                    <p>Мы сотрудничаем с ведущими компаниями в области безопасности и инновационных технологий.</p>
+                </td>
             </tr>
         </table>
-
 
         <!-- Кнопка для открытия модального окна с сообщением -->
         <button class="open-message-btn">Написать сообщение</button>
@@ -65,7 +65,6 @@
     <button class="close-message-btn">Закрыть</button>
 </div>
 
-
         <div class="footer-container">
             <div class="footer">
             © 2024 Охранное агентство "Страж"
@@ -73,7 +72,6 @@
         </div>
     </div>
 
-    <script src="/static/script.js"></script>
+    <script src="/static/script.js"></script> <!-- Подключение вашего JavaScript файла -->
 </body>
 </html>
-

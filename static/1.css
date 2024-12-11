@@ -1,56 +1,82 @@
 /* Общие стили */
 body {
-    font-family: "Times New Roman", serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 #main-container {
-    width: 80%;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    background-color: #ffffff;
     padding: 20px;
-    border: 2px solid #444;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Заголовок */
+/* Стили для хедера */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #8b0000;
-    color: #fff;
-    padding: 10px 20px;
-}
-
-.header h1 {
-    margin: 0;
-}
-
-.menu-toggle,
-#logout-btn {
-    background-color: #660000;
+    background-color: #333;
     color: white;
-    border: none;
     padding: 10px;
+}
+
+.menu-toggle {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
     cursor: pointer;
-    font-size: 16px;
 }
 
-.menu-toggle:hover,
-#logout-btn:hover {
-    background-color: #a80000;
+button#logout-btn {
+    background-color: #d32f2f;
 }
 
-/* Меню */
+button#logout-btn:hover {
+    background-color: #c62828;
+}
+
+/* Стили для меню */
 .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
     display: none;
-    background-color: #8b0000;
-    color: #fff;
+    flex-direction: column;
+    justify-content: center;
     padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.menu.active {
+    display: flex;
 }
 
 .menu ul {
@@ -58,184 +84,149 @@ body {
     padding: 0;
 }
 
-.menu li {
+.menu ul li {
     margin: 10px 0;
 }
 
-.menu a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.menu a:hover {
-    text-decoration: underline;
-}
-
-.close-btn {
-    background-color: #660000;
-    color: #fff;
+.menu .close-btn {
+    background-color: transparent;
+    color: white;
     border: none;
-    padding: 5px 10px;
+    font-size: 24px;
+    margin-bottom: 20px;
     cursor: pointer;
 }
 
-/* Бегущая строка */
-.marquee-container {
-    background-color: #ffd700;
-    color: #000;
-    padding: 10px;
-    font-style: italic;
-}
-
-.marquee {
-    overflow: hidden;
-    white-space: nowrap;
-    animation: marquee 10s linear infinite;
-}
-
-@keyframes marquee {
-    from { transform: translateX(100%); }
-    to { transform: translateX(-100%); }
-}
-
-/* Модальное окно добавления товара */
-.modal-overlay-add_product,
+/* Модальные окна */
+.modal-overlay,
 .message-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
 }
 
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.close-add_product-btn {
-    background-color: #660000;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.submit-btn {
-    background-color: #006400;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.submit-btn:hover {
-    background-color: #008000;
-}
-
-/* Кнопка добавления товара */
-.add-item-btn {
-    margin: 20px 0;
-    background-color: #8b0000;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-/* Модальное окно для сообщений */
+.modal-content,
 .message-modal {
-    background: white;
+    background-color: white;
     padding: 20px;
-    border-radius: 5px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 50px auto;
+    width: 80%;
+    max-width: 600px;
 }
 
-.close-message-btn {
-    background-color: #8b0000;
+button.close-add_product-btn,
+button.close-info-btn,
+button.close-message-btn {
+    background-color: #d32f2f;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 5px 10px;
     cursor: pointer;
 }
 
-/* Подвал */
-.footer-container {
-    background-color: #8b0000;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
+button.close-add_product-btn:hover,
+button.close-info-btn:hover,
+button.close-message-btn:hover {
+    background-color: #c62828;
 }
 
-/* Контейнер для товаров */
-#products-container {
-    display: flex;
-    flex-wrap: wrap; /* Позволяет переносить элементы на новую строку при нехватке места */
-    justify-content: space-between; /* Равномерное распределение товаров по горизонтали */
-    gap: 20px; /* Расстояние между товарами */
-    margin: 20px 0;
+/* Стили для формы добавления товара */
+form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form input,
+form textarea {
+    width: 100%;
     padding: 10px;
+    margin-bottom: 15px;
 }
 
-/* Карточка товара */
+form .checkbox-group {
+    margin-bottom: 15px;
+}
+
+form .checkbox-group label {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+form .submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+form .submit-btn:hover {
+    background-color: #45a049;
+}
+
+/* Стили для списка товаров */
+#products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
 .product-item {
-    background-color: #f8f8f8;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: white;
     padding: 15px;
-    width: calc(25% - 20px); /* Ширина каждой карточки (можно изменить) */
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 .product-item img {
-    width: 100%;
-    height: auto;
-    max-width: 200px; /* Ограничение по ширине изображения */
-    margin-bottom: 10px;
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    margin-bottom: 15px;
 }
 
 .product-item h3 {
     margin: 10px 0;
-    font-size: 18px;
     color: #333;
 }
 
 .product-item p {
-    margin: 0 0 10px;
-    font-size: 14px;
     color: #666;
 }
 
-.product-item .product-price {
-    font-weight: bold;
-    color: #8b0000;
-    margin-bottom: 10px;
-}
-
-/* Кнопка для добавления товара */
-.add-item-btn {
-    align-self: center;
-    background-color: #006400;
+.product-item .buy-btn {
+    background-color: #4CAF50;
     color: white;
+    padding: 10px;
     border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
     cursor: pointer;
 }
 
-.add-item-btn:hover {
-    background-color: #008000;
+.product-item .buy-btn:disabled {
+    background-color: #cccccc;
+}
+
+.product-item .buy-btn:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+/* Стили для футера */
+.footer-container {
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+/* Статус "Товар куплен" */
+#product-info-status {
+    color: green;
+    font-weight: bold;
+    display: none;
 }

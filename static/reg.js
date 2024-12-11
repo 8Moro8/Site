@@ -42,8 +42,6 @@ document.getElementById('register-form').addEventListener('submit', function(eve
 
     const username = document.getElementById('reg-username').value;
     const email = document.getElementById('reg-email').value;
-    const country = document.getElementById('reg-country').value;
-    const phone = document.getElementById('reg-phone').value;
     const password = document.getElementById('reg-password').value;
 
     // Отправка данных на сервер для регистрации пользователя

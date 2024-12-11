@@ -8,42 +8,84 @@ document.addEventListener("DOMContentLoaded", async () => {
     const addProductForm = document.getElementById('product-form');
     const openMessageBtn = document.querySelector('.open-message-btn');
     const modalOverlay = document.querySelector('.modal-overlay-add_product');
-    const messageModal = document.querySelector('.message-modal');
-    const closeMessageBtn = document.querySelector('.close-message-btn');
     const addProductModal = document.getElementById('add-item-modal');
     const closeAddProductModalBtn = document.getElementById('close-add_product-btn');
     const addProductBtn = document.getElementById('add-item-btn');
+    const productInfoModal = document.getElementById('product-info-modal');
+    const closeInfoBtn = document.getElementById('close-info-btn');
+    const deleteProductBtn = document.getElementById('delete-product-btn');
+    const buyProductBtn = document.getElementById('buy-product-btn');
+    const productsContainer = document.getElementById('products-container');
     const messageOverlay = document.querySelector('.message-overlay');
+    const messageModal = document.querySelector('.message-modal');
+    const messageInput = document.querySelector('.message-input');
+    const sendMessageBtn = document.querySelector('.send-message-btn');
+    const closeMessageBtn = document.querySelector('.close-message-btn');
+    const messageNotification = document.querySelector('.message-notification');
 
-    // Хеширование пароля
-    function hashPassword(password) {
-        return CryptoJS.SHA256(password).toString();
-    }
+    // Функция для покупки товара
+    const buyProduct = async (productId) => {
+        try {
+            // Запрос разрешения на уведомления, если оно не было предоставлено
+            if (Notification.permission !== "granted") {
+                const permission = await Notification.requestPermission();
+                if (permission !== "granted") {
+                    alert('Разрешение на уведомления не предоставлено.');
+                    return;
+                }
+            }
 
-    // Регистрация пользователя
-    async function registerUser(email, password, name, country, phone) {
-        const hashedPassword = hashPassword(password);
-        const response = await fetch('/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password: hashedPassword, name, country, phone }),
-        });
-        const result = await response.json();
-        alert(response.ok ? 'Регистрация успешна' : `Ошибка: ${result.error || 'Невозможно зарегистрировать пользователя'}`);
-    }
+            const response = await fetch(`/buy-product/${productId}`, { method: 'POST' });
+
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);  // Показываем сообщение о успешной покупке
+
+                // Показываем системное уведомление
+                if (Notification.permission === "granted") {
+                    new Notification("Успешная покупка!", {
+                        body: `Вы успешно купили товар ${data.productName}`,
+                        icon: 'static/free-icon-black-check-box-with-white-check-61141.png'
+                    });
+                }
+
+                // Деактивируем кнопку "Купить товар"
+                buyProductBtn.disabled = true;
+                buyProductBtn.innerText = "Товар куплен";
+
+                // Обновить состояние товара в интерфейсе
+                // Например, скрыть этот товар или обновить его статус
+                const productItem = document.querySelector(`[data-id="${productId}"]`);
+                if (productItem) {
+                    productItem.querySelector('.buy-product-btn').disabled = true;
+                    productItem.querySelector('.buy-product-btn').innerText = "Товар куплен";
+                }
+            } else {
+                const data = await response.json();
+                alert(data.error || 'Ошибка при покупке товара');
+            }
+        } catch (error) {
+        }
+    };
+
+    // Обработчик клика по кнопке "Купить товар" в модальном окне
+    buyProductBtn?.addEventListener('click', () => {
+        const productId = buyProductBtn.dataset.id;
+        if (productId) {
+            buyProduct(productId);
+        }
+    });
 
     // Загрузка товаров
     async function loadProducts() {
         try {
-            const response = await fetch('/get-products', { cache: 'no-cache' });
+            const response = await fetch('/products_services', { cache: 'no-cache' });
             if (!response.ok) throw new Error('Ошибка при загрузке товаров');
-
             const products = await response.json();
-
-            const productsContainer = document.getElementById('products-container');
+            
             productsContainer.innerHTML = products.map(product => `
-                <div class="product-item">
-                    <img src="${product.photo_url}" alt="${product.name}" />
+                <div class="product-item" data-id="${product.id}">
+                    <img src="${product.photo_url || 'path/to/default/image.jpg'}" alt="${product.name}" />
                     <h3>${product.name}</h3>
                     <p>Цена: ${product.price}</p>
                 </div>
@@ -52,6 +94,66 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error('Ошибка при загрузке товаров:', error);
         }
     }
+
+    // Открытие модального окна с информацией о товаре
+    productsContainer?.addEventListener('click', async (e) => {
+        const productItem = e.target.closest('.product-item');
+        if (!productItem) return; // проверка на то, что клик был по элементу товара
+        const productId = productItem.dataset.id;
+        
+        try {
+            const response = await fetch(`/get-product-info/${productId}`);
+            if (!response.ok) throw new Error('Ошибка при получении информации о товаре');
+            const product = await response.json();
+    
+            document.getElementById('product-info-name').innerText = product.name || 'Нет данных';
+            document.getElementById('product-info-description').innerText = product.description || 'Нет описания';
+            document.getElementById('product-info-price').innerText = product.price || 'Нет цены';
+            document.getElementById('product-info-image').src = product.photo_url || 'path/to/default/image.jpg';
+    
+            productInfoModal.style.display = 'block';
+            buyProductBtn.disabled = product.status === 'sold';
+            buyProductBtn.dataset.id = product.id;
+
+            if (buyProductBtn) {
+                buyProductBtn.dataset.id = product.id;
+                buyProductBtn.style.display = product.status === 'sold' ? 'none' : 'inline-block';
+            }
+    
+            if (deleteProductBtn) {
+                deleteProductBtn.dataset.id = product.id;
+            }
+        } catch (error) {
+            alert('Ошибка при загрузке информации о товаре');
+        }
+    });
+    
+
+    // Обработчик клика по кнопке "Купить товар" в модальном окне
+    buyProductBtn?.addEventListener('click', () => {
+        const productId = buyProductBtn.dataset.id;
+        if (productId) {
+            buyProduct(productId);
+        }
+    });
+
+    // Закрытие модального окна с информацией о товаре
+    closeInfoBtn?.addEventListener('click', () => {
+        productInfoModal.style.display = 'none';
+    });
+
+    // Удаление товара
+    deleteProductBtn?.addEventListener('click', async () => {
+        const productId = deleteProductBtn.dataset.id;
+        const response = await fetch(`/delete-product/${productId}`, { method: 'DELETE' });
+        if (response.ok) {
+            alert('Товар удален!');
+            productInfoModal.style.display = 'none';
+            await loadProducts();
+        } else {
+            alert('Ошибка при удалении товара');
+        }
+    });
 
     // Добавление товара
     addProductForm?.addEventListener('submit', async (e) => {
@@ -63,38 +165,24 @@ document.addEventListener("DOMContentLoaded", async () => {
             alert(response.ok ? 'Товар добавлен!' : `Ошибка: ${result.error}`);
             if (response.ok) {
                 addProductModal.style.display = 'none';
-                await loadProducts(); // Обновление списка товаров
+                await loadProducts();
             }
         } catch {
             alert('Ошибка при отправке.');
         }
     });
 
-    // Проверка статуса пользователя
-    function checkLoginStatus() {
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        loggedInUser ? showMain() : showLogin();
-    }
-
-    function showMain() {
-        mainContainer.style.display = 'block';
-    }
-
-    function showLogin() {
-        window.location.href = 'reg.html';
-    }
-
     // Выход пользователя
-    function logout() {
+    logoutBtn?.addEventListener('click', () => {
         localStorage.removeItem('loggedInUser');
         window.location.href = 'reg.html';
-    }
+    });
 
     // Открытие и закрытие меню
     menuBtn?.addEventListener('click', () => menu.classList.add('active'));
     closeBtn?.addEventListener('click', () => menu.classList.remove('active'));
 
-    // Модальные окна для сообщений
+    // Открытие окна сообщений
     openMessageBtn?.addEventListener('click', () => {
         messageOverlay.style.display = 'block';
         messageModal.style.display = 'block';
@@ -110,7 +198,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         messageModal.style.display = 'none';
     });
 
-    // Модальное окно для добавления товара
+    // Открытие модального окна добавления товара
     addProductBtn?.addEventListener('click', () => {
         addProductModal.style.display = 'block';
     });
@@ -130,10 +218,39 @@ document.addEventListener("DOMContentLoaded", async () => {
         await registerUser(email, password, name, country, phone);
     });
 
-    // Привязка обработчика к кнопке выхода
-    logoutBtn?.addEventListener('click', logout);
+    // Проверка статуса пользователя
+    function checkLoginStatus() {
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        loggedInUser ? mainContainer.style.display = 'block' : window.location.href = 'reg.html';
+    }
 
-    // Инициализация
-    await loadProducts(); // Загрузка товаров при загрузке страницы
+    const sendMessage = () => {
+        const messageText = messageInput.value.trim();
+        
+        if (messageText === '') {
+            alert('Пожалуйста, введите сообщение.');
+            return;
+        }
+
+        // Очистить поле ввода
+        messageInput.value = '';
+
+        // Отправка сообщения
+        fetch('/send-message', {
+            method: 'POST',
+            body: JSON.stringify({ message: messageText }),
+            headers: { 'Content-Type': 'application/json' }
+        }).then(response => response.json())
+          .then(data => {
+              alert(data.status);
+              messageNotification.style.display = 'block';
+          })
+          .catch(error => alert('Ошибка при отправке сообщения.'));
+    };
+
+    sendMessageBtn?.addEventListener('click', sendMessage);
+
+    // Загрузка товаров при загрузке страницы
+    loadProducts();
     checkLoginStatus();
 });

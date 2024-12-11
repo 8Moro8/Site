@@ -105,7 +105,7 @@ button:hover {
   top: -400px; /* Начальное положение меню за верхним краем экрана (высота меню 250px) */
   left: 0;
   width: 10%; /* Меню будет на всю ширину экрана */
-  height: 300px; /* Высота меню */
+  height: 120px; /* Высота меню */
   background-color: #004080;
   color: white;
   overflow-y: auto;
@@ -567,4 +567,21 @@ p {
   border: 1px solid #000000;
   margin-top: 10px;
   font-size: 16px;
+}
+
+.send-message-btn{
+  font-family: 'Times New Roman', Times, serif; /* Используем Times New Roman, если он доступен */
+  position: fixed; /* Используем фиксированное позиционирование */
+  right: 110px; /* Отступ*/
+  top: 20px; /* Отступ сверху, можете изменить на нужное значение */
+  font-size: 20px; /* Размер шрифта */
+  background-color: #e74c3c; /* Цвет фона кнопки */
+  color: white; /* Цвет текста кнопки */
+  border: none; /* Без рамки */
+  border-radius: 5px; /* Скругление углов кнопки */
+  cursor: pointer; /* Указатель на кнопке */
+  margin: 10px 10px; /* Отступы сверху и снизу */
+  width: 110px; /* Ширина кнопки */
+  transition: background-color 0.3s; /* Плавный переход */
+  padding: 10px; /* Отступы */
 }
